@@ -1,1 +1,52 @@
 /* Empty. Add your own CSS if you like */
+.suprfill
+{
+    top:0;
+    left: 0;
+    right:0;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%
+}
+
+.main-color
+{
+    color: #e9e4d9;
+}
+.main-color-bg
+{
+    background-color: #e9e4d9;
+}
+.card-color
+{
+    color:#f8f6f1;
+}
+.card-color-bg
+{
+    background-color: #f8f6f1;
+}
+
+.btn-blue-bg
+{
+    background-color: #7daddb;
+}
+.btn-blue-color
+{
+    background-color: #7daddb;
+}
+.main-text-color
+{
+    color:#b5ac95;
+}
+
+.img-btn
+{
+    border-radius: 5px;
+    border: 2px solid #dad5cb;
+}
+
+.tab-btn
+{
+    
+}

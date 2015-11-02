@@ -1,0 +1,45 @@
+<ion-view view-title="Playlists">
+    <ion-content class="main-color-bg padding">
+        <div class="card card-color-bg" style="max-width: 600px; margin: 10px auto;" >
+            <div class="row">
+                <div class="col text-center main-text-color">剩余</div>
+                <div class="col text-center main-text-color">今天计划</div>
+            </div>
+            <div class="row" style="margin: 5px 0;">
+                <div class="col text-center" style="font-size: 50px; color: #78695a;">130<span style="font-size:0.3em" class="main-text-color">天</span></div>
+                <div class="col text-center" style="font-size: 50px;color: #78695a">27<span style="font-size:0.3em" class="main-text-color">天</span></div>
+            </div>
+            
+            <div class="item item-borderless card-color-bg text-center main-text-color">四级词汇<span style="border: 1px solid lightgray; padding: 5px 20px; border-radius: 20px ; margin: 30px;" class="main-text-color">改变计划</span></div>
+            
+            <div class="text-center main-text-color" style="margin-top: 30px">Finished 1 / 3486</div>
+            
+            <div style="width: 90%; margin: 10px auto; height: 20px; border: 1px solid #7daddb; border-radius: 3px">
+                <div style="width: calc(100% - 4px); margin: 2px auto; height: calc(100% - 4px); background-color: #7daddb"></div>
+            </div>
+            
+           
+            
+        </div>
+        
+        <div class="text-center main-text-color">今天需要学习27个单词，开始复习吧</div>
+        <div class="light btn-blue-bg text-center" menu-close ng-click="btn0_click()"  style="max-width: 300px; margin: 20px auto;border-radius: 5px; padding: 20px; position: relative;" >
+            开始背单词
+        
+            <div ng-if="btns[0].isClick" style="opacity: 1;position: absolute; width: 50%; height: 1px;  background-color: gray; top: 50%; left: 50%; transform: translate(-50%,-50%)"></div>
+            
+        </div>
+        <div class="item item-icon-left item-borderless  light text-left  card"  style="max-width: 300px; margin: 20px auto;border-radius: 5px; background-color: #f1ecdf; color: #7daddb; padding: 0 0" >
+            <div class="row">
+                <div class="col col-33 text-center">
+                    <img src="img/file.svg"  style="height: 40px; width: 40px">
+                </div>
+                <div class="col col-67">
+                    单词电台
+                    <br>FM&TV
+                </div>
+            </div>        
+        </div>
+    
+    </ion-content>
+</ion-view>
