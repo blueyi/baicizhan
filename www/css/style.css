@@ -18,6 +18,12 @@
 {
     background-color: #e9e4d9;
 }
+
+.main-dark-bg
+{
+    background-color: #dad5cb;
+}
+
 .card-color
 {
     color:#f8f6f1;
@@ -33,7 +39,7 @@
 }
 .btn-blue-color
 {
-    background-color: #7daddb;
+    color: #7daddb;
 }
 .main-text-color
 {
