@@ -11,14 +11,16 @@ md.controller('mainCtrl', function($scope,$timeout,snd,$ionicHistory, $ionicLoad
     
     $scope.btn0_click = function ()
     {
-         snd.chop();
+        snd.chop();
         $ionicLoading.show({
-            template: '数据读取中...'
-        });
+      template: '数据读取中...'
+    });
+         
+        
 
         $timeout(function(){
            
-        window.document.location.href += "/test";
+        window.document.location.href += "/test/" + Math.floor((Math.random())*10000);
         },20);
         
 

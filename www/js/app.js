@@ -49,7 +49,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
     .state('app.test', {
-    url: '/main/test',
+    url: '/main/test/:randid',
     views: {
       'menuContent': {
         templateUrl: 'templates/test.html',

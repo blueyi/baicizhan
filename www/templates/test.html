@@ -1,5 +1,5 @@
 <ion-view view-title="Playlists">
-    <div class="suprfill main-color-bg" style="padding: 0">
+    <div class="suprfill main-color-bg" style="padding: 0" >
         
         <div  style="height: 50px;  position: relative; color: #b8ae96">
             <div class="suprfill" >
@@ -7,9 +7,9 @@
                     <div class="col col-33 main-color-bg" style="height: 100%; position: relative; min-width: 150px; box-shadow: 2px -2px 2px gray; border-radius: 0 5px 0 0;">
                         <div class="suprfill">
                             <div class="row" style="height: 100%; padding: 0;">
-                                <div class="col col-33" style="position: relative; ">
+                                <a menu-close href="#/app/main" class="col col-33" style="position: relative;color:#b8ae96  ">
                                     <i class="icon ion-ios-home-outline" style="font-size: 30px;position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"></i>
-                                </div>
+                                </a>
                                 <div class="col col-66" style="position: relative; ">
                                     <div style=";position: absolute; font-size: smaller;left: 10%; top: 50%; transform: translate(0, -50%)">
                                         需学习25<br>学复习2
@@ -25,7 +25,7 @@
                         
                     </div>
                     <div class="col col-66" style="position: relative; height: 50px; padding: 0px 10px;">
-                        <div style="font-size: larger;  line-height: 50px; white-space: nowrap;
+                        <div style="  line-height: 50px; white-space: nowrap;
                              width:98%; text-overflow: ellipsis; overflow-x: hidden">
                             <i class="hide icon ion-checkmark btn-blue-color" style="margin: 0 10px; "></i>
                             <span style="margin: 0 10px;border:1px solid #b8ae96;padding: 2px 3px; border-radius: 2px ">斩</span>
@@ -40,44 +40,46 @@
         
         
         
-        <div style="height:calc(50% - 55px)">
+        <div style="height:calc(50% - 55px); position: relative;" class="main-color-bg" on-swipe-up="swipe('up')" on-swipe-down="swipe('down')" >
+            <div  style="height: 50%; width: 80%; max-width: 800px;margin: 0 auto; border-bottom: 1px solid lightgray;position: relative" ng-class="{'borderless':!answer.isHint}">            
+                <p id="option-word"  class="text-center" style="" ng-class="{'middle':answer.isHint}">
+                    <span ng-repeat="n in cells track by $index" ng-class="{'blue':n.trim().toLowerCase().indexOf(answer.word.toLowerCase())>=0}"  ng-bind-html="n" ng-click="wordClick(n)"> </span>
+                
+                </p>
+            </div>
+            <div style="height: 50%; width: 80%; max-width: 800px;margin: 0 auto; ">                
+            </div>                      
         </div>
          <div style="height:calc(50% - 55px);">
-            <div class="row text-center" style="height: 50%; max-width:   800px; margin: 0 auto">
-                <div class="col img-btn" style=" margin:0 2px; background-image: url(http://baicizhan2.qiniucdn.com{{data[0][6]}}); background-repeat: no-repeat; background-size: cover;">
-                    
-                </div>
-                <div class="col img-btn" style=" margin:0 2px; background-image: url(http://baicizhan2.qiniucdn.com{{data[1][6]}}); background-repeat: no-repeat; background-size: cover;">
-                    
-                </div>
-               
+             <div ng-repeat="m in [0,1]" class="row text-center" style="height: 50%; max-width:   800px; margin: 0 auto">
+                 <div id='option-btn' ng-repeat="n in [0,1]" ng-click="imgClick(m*2+n)" class="col img-btn" 
+                      ng-class="{'block':answer.isAnswer&&answer.selectId == answer.correctId&&answer.correctId!=(m*2+n)}"
+                      style="position: relative ;margin:0 2px;height: 100%; background-image: url(http://baicizhan2.qiniucdn.com{{data[answer.pageIndex*4 + m*2+n][6]}}); background-repeat: no-repeat; background-size: cover;">
+                    <div ng-if='answer.isAnswer&&( answer.selectId == m*2+n && answer.selectId != answer.correctId)' class="suprfill" style="background-size: 80% 80%; background-image: url('img/wrong.svg');background-position: 50% 50%;background-repeat: no-repeat; ;background-origin: 50% 50%;">
+                        
+                    </div>
+                    <div ng-if='answer.isAnswer&&(answer.selectId == m*2+n && answer.selectId == answer.correctId)' class="suprfill" style="background-size: 80% 80%; background-image: url('img/right.svg');background-position: 50% 50%;background-repeat: no-repeat; ;background-origin: 50% 50%;">
+                        
+                    </div>
+                </div>                           
             </div>
-            <div class="row text-center" style="height: 50%; max-width:   800px;margin: 0 auto">
-                <div class="col img-btn" style=" margin:0 2px; background-image: url(http://baicizhan2.qiniucdn.com{{data[2][6]}}); background-repeat: no-repeat; background-size: cover;">
-                    
-                </div>
-               
-                <div class="col img-btn" style=" margin:0 2px; background-image: url(http://baicizhan2.qiniucdn.com{{data[3][6]}}); background-repeat: no-repeat; background-size: cover;">
-                    
-                </div>
-               
-            </div>
+          
             
         </div>
        
         <div class="row" style="height: 60px;max-width:800px; margin: 0 auto">
             <div class="col col-25 tab-btn text-center">
-                <div style="margin:0 10px; width: calc(100% - 20px); padding: 10px 0px; border: 1px solid #b5ac95; color: #b5ac95; border-radius: 2px">
+                <div class="playBtn" style="margin:0 10px; width: calc(100% - 20px); padding: 10px 0px; border: 1px solid #b5ac95; color: #b5ac95; border-radius: 2px">
                     砍
                 </div>
             </div>
             <div class="col tab-btn text-center">
-                <div style="margin:0 10px; width: calc(100% - 20px); padding: 10px 0px; border: 1px solid #b5ac95;color: #b5ac95;border-radius: 2px">
+                <div class="playBtn" style="margin:0 10px; width: calc(100% - 20px); padding: 10px 0px; border: 1px solid #b5ac95;color: #b5ac95;border-radius: 2px">
                     提示
                 </div>
             </div>
             <div class="col col-25 tab-btn text-center">
-                <div style="margin:0 10px; width: calc(100% - 20px); padding: 10px 0px; border: 1px solid #b5ac95;color: #b5ac95;border-radius: 2px">
+                <div class="playBtn" ng-click="playSound()" style="margin:0 10px; width: calc(100% - 20px); padding: 10px 0px; border: 1px solid #b5ac95;color: #b5ac95;border-radius: 2px">
                     <i class="icon ion-ios-play"></i>
                 </div>
             </div>

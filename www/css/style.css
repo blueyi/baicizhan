@@ -56,3 +56,65 @@
 {
     
 }
+
+
+
+#option-btn.block
+{
+    opacity: 0;
+}
+
+#option-word 
+{
+    color: #909090;
+    font-size: 1.2em; 
+    position: absolute; 
+    bottom: 0%; 
+    left: 50%; 
+    width: 100%; 
+    transform: translate(-50%,0%)
+}
+
+@keyframes middle-move {
+    from {bottom:0%;transform: translate(-50%,0%);}
+    to {bottom:15%;transform: translate(-50%,0%)}
+}
+
+
+#option-word.middle
+{
+    color: #909090;
+    font-size: 1.2em; 
+    position: absolute; 
+    bottom: 15%; 
+    left: 50%; 
+    width: 100%; 
+    transform: translate(-50%,0%);
+    animation-name: middle-move;
+    animation-duration: 0.1s;
+}
+
+.borderless
+{
+    border: 0px solid transparent!important;
+}
+
+
+
+.playBtn:active
+{
+    background-color: #b5ac95;
+    color: white !important;
+}
+
+#option-word .blue
+{
+    color: #7daddb;
+    font-weight: bold;
+}
+
+#option-word span:active
+{
+    background-color: darkgray;
+    color: white;
+}

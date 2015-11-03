@@ -1,4 +1,4 @@
-md.factory('db', function($q,$timeout) {
+md.factory('db', function($timeout,$rootScope) {
     var fct = {};
     
     var xhr = new XMLHttpRequest();
@@ -18,7 +18,7 @@ md.factory('db', function($q,$timeout) {
     {
      if(fct.db && fct.db.exec)
      {
-            var contents = fct.db.exec("SELECT * FROM ts_topic_data_info_1 ORDER BY RANDOM()  limit 4");
+            var contents = fct.db.exec("SELECT * FROM ts_topic_data_info_1 ORDER BY RANDOM()  limit 120");
                             
             return contents[0].values;
         }
