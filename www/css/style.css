@@ -61,7 +61,8 @@
 
 #option-btn.block
 {
-    opacity: 0;
+    background-color: #dad5cb;
+    background-position: 10000px 10000px;
 }
 
 #option-word 
