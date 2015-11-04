@@ -54,7 +54,7 @@
              <div ng-repeat="m in [0,1]" class="row text-center" style="height: 50%; max-width:   800px; margin: 0 auto">
                  <div id='option-btn' ng-repeat="n in [0,1]" ng-click="imgClick(m*2+n)" class="col img-btn" 
                       ng-class="{'block':answer.isAnswer&&answer.selectId == answer.correctId&&answer.correctId!=(m*2+n)}"
-                      style="position: relative ;margin:0 2px;height: 100%; background-image: url({{data[answer.pageIndex*4 + m*2+n][6]}}); background-repeat: no-repeat; background-size: cover;">
+                      style="position: relative ;margin:0 2px;height: 100%; background-image: url(http://baicizhan2.qiniucdn.com{{data[answer.pageIndex*4 + m*2+n][6]}}); background-repeat: no-repeat; background-size: cover;">
                     <div ng-if='answer.isAnswer&&( answer.selectId == m*2+n && answer.selectId != answer.correctId)' class="suprfill" style="background-size: 80% 80%; background-image: url('img/wrong.svg');background-position: 50% 50%;background-repeat: no-repeat; ;background-origin: 50% 50%;">
                         
                     </div>
