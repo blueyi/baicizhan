@@ -4,7 +4,24 @@
  * and open the template in the editor.
  */
 
-md.controller('testCtrl', function($scope,$timeout,snd,db,$ionicLoading,$stateParams) {
+md.controller('testCtrl', function($scope,$timeout,snd,db,$ionicLoading,$stateParams,$ionicModal) {
+    $ionicModal.fromTemplateUrl('templates/test-model.html', {
+        scope: $scope,animation: 'slide-in-down'
+    }).then(function (modal) {
+        $scope.modal = modal;
+    });
+    
+    // Triggered in the login modal to close it
+  $scope.closeLogin = function() {
+    $scope.modal.hide();
+  };
+
+  // Open the login modal
+  $scope.login = function() {
+    $scope.modal.show();
+  };
+    
+    
     
     $scope.randId = $stateParams.randid;
     $scope.cache ={};
@@ -40,7 +57,7 @@ md.controller('testCtrl', function($scope,$timeout,snd,db,$ionicLoading,$statePa
     $scope.change = function()
     {
        $scope.data = db.getRandomTest(); 
-       $scope.downloadpath = [];
+       
        
        $ionicLoading.hide();
        
