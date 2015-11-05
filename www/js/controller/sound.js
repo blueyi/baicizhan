@@ -42,7 +42,7 @@ md.factory('snd', function() {
     
     
     fct.audio.addEventListener("ended", function() { 
-        console.log("ended");
+//        console.log("ended");
         if(fct.queue.length >0)
         {
             fct.audio.src = fct.queue.shift();

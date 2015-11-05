@@ -1,25 +1,67 @@
-<ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
-  <ion-content>
-    <form ng-submit="doLogin()">
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.username">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
-        </label>
-      </div>
-    </form>
-  </ion-content>
+<ion-modal-view id="test-model" style="box-shadow: 2px 3px 3px gray;">
+    <ion-footer-bar class="main-color-bg" style=" height: 60px">
+
+
+        <button class="button button-outline" ng-click="closeLogin()" style="width: 30%; height: 45px; margin:auto 5%;">砍</button>
+        <button class="button button-outline" ng-click="closeLogin()"  style="width: 50%; height: 45px; margin: auto 5%">继续答题</button>
+
+    </ion-footer-bar>
+    <ion-content class="main-color-bg padding" style="padding-left: 20px; padding-right: 20px">
+        <h3 ng-click="playWord()"><span id="title" >{{answer.word}}</span><span style="font-size: 20px; font-weight: normal; vertical-align: bottom; " class="main-text-color"><i class="icon ion-ios-close-empty assertive" style="margin-right: 5px; margin-left: 10px"></i>1</span></h3>
+        <p ng-click="playWord()"><span  id="yinbiao" > {{data[answer.pageIndex * 4 + answer.correctId][9]}}</span></p>
+        <p >{{data[answer.pageIndex * 4 + answer.correctId][3]}}</p>
+        <img height="150"   src="http://baicizhan2.qiniucdn.com{{data[answer.pageIndex * 4 + answer.correctId][6]}}">
+        <div class="card padding" >
+            <div  style="background-color: transparent; padding-left: 40px;" >
+                <i id="sound-btn" ng-click="playSound()" class="icon ion-ios-play-outline" style="color:white;background-color:#d1c5b6;border-radius: 3px; position: absolute;left: 12px; ; padding:5px 10px; margin-right: 20px"></i>
+                <p>{{data[answer.pageIndex * 4 + answer.correctId][4]}}</p>
+                <p>{{data[answer.pageIndex * 4 + answer.correctId][5]}}</p>
+                <div style="width: calc(100%); height: 1px; background-color: #b5ac95; margin-top: 10px;"></div>            
+            </div>
+
+            <div ng-if="data[answer.pageIndex * 4 + answer.correctId][13].length > 0" style="background-color: transparent; padding-left: 40px; margin-top: 15px;" >
+                <i class="icon " style="font-size: smaller;color:white;background-color:#d1c5b6;border-radius: 3px; position: absolute;left: 12px; ; padding:2px 3px; margin-right: 20px">象形</i>
+
+                <img style="max-width: 80%;" src="http://baicizhan2.qiniucdn.com{{data[answer.pageIndex * 4 + answer.correctId][13]}}">
+
+                <div style="width: calc(100%); height: 1px; background-color: #b5ac95;margin-top: 10px;"></div>            
+            </div>
+            <div ng-if="data[answer.pageIndex * 4 + answer.correctId][12].length > 0" style="background-color: transparent; padding-left: 40px; margin-top: 15px" >
+                <i class="icon " style="font-size: smaller;color:white;background-color:#d1c5b6;border-radius: 3px; position: absolute;left: 12px; ; padding:2px 3px; margin-right: 20px">记忆</i>
+
+                <p>{{data[answer.pageIndex * 4 + answer.correctId][12]}}
+                </p>
+                <div style="width: calc(100%); height: 1px; background-color: #b5ac95;margin-top: 10px;"></div>            
+            </div>
+
+            <div  ng-if="data[answer.pageIndex * 4 + answer.correctId][11].length > 0" style="background-color: transparent; padding-left: 40px; margin-top: 15px" >
+                <i class="icon " style="font-size: smaller;color:white;background-color:#d1c5b6;border-radius: 3px; position: absolute;left: 12px; ; padding:2px 3px; margin-right: 20px">英译</i>
+
+                <p>
+                    <span><blue ng-click="playWord()">{{answer.word}}</blue> = </span>{{data[answer.pageIndex * 4 + answer.correctId][11]}}
+                </p>
+                <div style="width: calc(100%); height: 1px; background-color: #b5ac95;margin-top: 10px;"></div>            
+            </div>
+            <div  ng-if="answer.video"  style="background-color: transparent; padding-left: 40px; margin-top: 15px" >
+                <i class="icon " style="font-size: smaller;color:white;background-color:#d1c5b6;border-radius: 3px; position: absolute;left: 12px; ; padding:2px 3px; margin-right: 20px">视频</i>
+
+                <video id="myVideo" ng-click="playVideo()"  style="max-width: 400px; width: 100%;" type="video/mp4" >
+                   
+                        <source ng-src="{{answer.videoUrl}}" autostart="false">
+
+                </video>
+                <div style="width: calc(100%); height: 1px; background-color: #b5ac95;margin-top: 10px;"></div>            
+            </div>
+            <div style="height: 30px">
+
+            </div>
+
+            <!--http://baicizhan2.qiniucdn.com/word_tv/real_harsh.mp4 -->
+        </div>
+        <div style="height: 60px">
+
+        </div>
+
+
+    </ion-content>
 </ion-modal-view>

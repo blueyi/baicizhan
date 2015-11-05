@@ -29,7 +29,7 @@
                              width:98%; text-overflow: ellipsis; overflow-x: hidden">
                             <i class="hide icon ion-checkmark btn-blue-color" style="margin: 0 10px; "></i>
                             <span style="margin: 0 10px;border:1px solid #b8ae96;padding: 2px 3px; border-radius: 2px ">斩</span>
-                            qimin is a good man  qimin is a good manqimin is a good manqimin is a good manqimin is a good manqimin is a good manqimin is a good manqimin is a good manqimin is a good manqimin is a good manqimin is a good manqimin is a good manqimin is a good man
+                            This is a test,This is a test,This is a test,This is a test,This is a test,
                         
                         </div>
                     </div>
@@ -47,7 +47,8 @@
                 
                 </p>
             </div>
-            <div style="height: 50%; width: 80%; max-width: 800px;margin: 0 auto; ">                
+            <div   style="height: 50%; width: 80%; max-width: 800px;margin: 0 auto; ">  
+                <p id="option-hint" ng-class="{'hint1':answer.hint.val==1,'hint2':answer.hint.val==2,'hint3':answer.hint.val==3}" ng-bind-html="answer.hint.content" style="margin-top: 15px;color: #909090;;"></p>
             </div>                      
         </div>
          <div style="height:calc(50% - 55px);">
@@ -75,7 +76,7 @@
                 </div>
             </div>
             <div class="col tab-btn text-center">
-                <div class="playBtn" style="margin:0 10px; width: calc(100% - 20px); padding: 10px 0px; border: 1px solid #b5ac95;color: #b5ac95;border-radius: 2px">
+                <div class="playBtn" ng-click="changeHint()" style="margin:0 10px; width: calc(100% - 20px); padding: 10px 0px; border: 1px solid #b5ac95;color: #b5ac95;border-radius: 2px">
                     提示
                 </div>
             </div>
