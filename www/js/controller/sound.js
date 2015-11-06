@@ -9,9 +9,19 @@ md.factory('snd', function() {
         fct.playSound("snd/chop.mp3");
     }
     
-    fct.right = function()
+    fct.clearQueue = function()
     {
-        fct.playSound("snd/right_v6.mp3");
+       while (fct.queue.length > 0) {
+                fct.queue.pop();
+            } 
+    }
+    
+    fct.right = function(right)
+    {
+        if (right)
+        {    fct.playSound("snd/right_v6.mp3");}
+        else
+        {    fct.playSound("snd/chop.mp3");}
     }
     
     fct.playSound = function(path,isqueue, isclean)
@@ -21,6 +31,7 @@ md.factory('snd', function() {
             while (fct.queue.length > 0) {
                 fct.queue.pop();
             }
+            fct.audio.pause();
         }
         
         if(isqueue && !fct.audio.paused)

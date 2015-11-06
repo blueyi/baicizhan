@@ -10,6 +10,22 @@
     height: 100%
 }
 
+.zhan-right
+{
+    border: 1px solid #6ad2bd !important;
+    color: white;
+    background-color: #6ad2bd!important;
+    
+}
+
+.zhan-wrong
+{
+    
+    border: 1px solid #ED7A86 !important;
+    color: white;
+    background-color: #ED7A86!important;
+}
+
 .main-color
 {
     color: #e9e4d9;
@@ -185,3 +201,51 @@
 {
     opacity: 0.5;
 }
+
+.slide-in-left {
+  -webkit-transform: translate3d(100%, 0%, 0);
+  transform: translate3d(100%, 0%, 0); }
+
+.slide-in-left.ng-enter, .slide-in-left > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms; }
+
+.slide-in-left.ng-enter-active, .slide-in-left > .ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slide-in-left.ng-leave, .slide-in-left > .ng-leave {
+  -webkit-transition: all ease-in-out 125ms;
+  transition: all ease-in-out 125ms; }
+
+.slide-in-right {
+  -webkit-transform: translate3d(-100%, 0%, 0);
+  transform: translate3d(-100%, 0%, 0); }
+
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms; }
+
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+  -webkit-transition: all ease-in-out 125ms;
+  transition: all ease-in-out 125ms; }
+
+.slide-in-left-half {
+  -webkit-transform: translate3d(50%, 0%, 0);
+  transform: translate3d(50%, 0%, 0); }
+
+.slide-in-left-half.ng-enter, .slide-in-left-half > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms; }
+
+.slide-in-left-half.ng-enter-active, .slide-in-left-half > .ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slide-in-left-half.ng-leave, .slide-in-left-half > .ng-leave {
+  -webkit-transition: all ease-in-out 100ms;
+  transition: all ease-in-out 100ms; }

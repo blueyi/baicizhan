@@ -1,6 +1,5 @@
 <ion-view view-title="Playlists">
-    <div class="suprfill main-color-bg" style="padding: 0" >
-        
+    <div class="suprfill main-color-bg" style="padding: 0" >        
         <div  style="height: 50px;  position: relative; color: #b8ae96">
             <div class="suprfill" >
                 <div class="row main-dark-bg" style=" height: 100%; padding: 0;">
@@ -25,22 +24,18 @@
                         
                     </div>
                     <div class="col col-66" style="position: relative; height: 50px; padding: 0px 10px;">
-                        <div style="  line-height: 50px; white-space: nowrap;
+                        <div ng-if="answer.history.length >0" style="   line-height: 50px; white-space: nowrap;
                              width:98%; text-overflow: ellipsis; overflow-x: hidden">
                             <i class="hide icon ion-checkmark btn-blue-color" style="margin: 0 10px; "></i>
-                            <span style="margin: 0 10px;border:1px solid #b8ae96;padding: 2px 3px; border-radius: 2px ">斩</span>
-                            This is a test,This is a test,This is a test,This is a test,This is a test,
+                            <span style="margin: 0 10px;border:1px solid #b8ae96;padding: 2px 3px; border-radius: 2px" ng-class="{'zhan-right':answer.history[answer.history.length-1].result,'zhan-wrong':!answer.history[answer.history.length-1].result}">{{answer.history[answer.history.length-1].result?"对":"错"}}</span>
+                            {{data[answer.history[answer.history.length-1].id][3]}}
                         
                         </div>
                     </div>
                 </div>
              </div>
-         </div>
-            
-        
-        
-        
-        <div style="height:calc(50% - 55px); position: relative;" class="main-color-bg" on-swipe-up="swipe('up')" on-swipe-down="swipe('down')" >
+         </div>      
+        <div style="height:calc(50% - 55px); position: relative;" class="main-color-bg" on-swipe-left="onSwipeLeft()">
             <div  style="height: 50%; width: 80%; max-width: 800px;margin: 0 auto; border-bottom: 1px solid lightgray;position: relative" ng-class="{'borderless':!answer.isHint}">            
                 <p id="option-word"  class="text-center" style="" ng-class="{'middle':answer.isHint}">
                     <span ng-repeat="n in cells track by $index" ng-class="{'blue':n.trim().toLowerCase().indexOf(answer.word.toLowerCase())>=0}"  ng-bind-html="n" ng-click="wordClick(n)"> </span>
@@ -71,7 +66,7 @@
        
         <div class="row" style="height: 60px;max-width:800px; margin: 0 auto">
             <div class="col col-25 tab-btn text-center">
-                <div ng-click="login()" class="playBtn" style="margin:0 10px; width: calc(100% - 20px); padding: 10px 0px; border: 1px solid #b5ac95; color: #b5ac95; border-radius: 2px">
+                <div ng-click="kan()" class="playBtn" style="margin:0 10px; width: calc(100% - 20px); padding: 10px 0px; border: 1px solid #b5ac95; color: #b5ac95; border-radius: 2px">
                     砍
                 </div>
             </div>
