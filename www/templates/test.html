@@ -1,4 +1,4 @@
-<ion-view view-title="Playlists">
+<ion-view view-title="Playlists" ng-click="pageClick()">
     <div class="suprfill main-color-bg" style="padding: 0" >        
         <div  style="height: 50px;  position: relative; color: #b8ae96">
             <div class="suprfill" >
@@ -24,7 +24,7 @@
                         
                     </div>
                     <div class="col col-66" style="position: relative; height: 50px; padding: 0px 10px;">
-                        <div ng-if="answer.history.length >0" style="   line-height: 50px; white-space: nowrap;
+                        <div ng-if="answer.history.length >0" ng-click="onSwipeLeft()" style="   line-height: 50px; white-space: nowrap;
                              width:98%; text-overflow: ellipsis; overflow-x: hidden">
                             <i class="hide icon ion-checkmark btn-blue-color" style="margin: 0 10px; "></i>
                             <span style="margin: 0 10px;border:1px solid #b8ae96;padding: 2px 3px; border-radius: 2px" ng-class="{'zhan-right':answer.history[answer.history.length-1].result,'zhan-wrong':!answer.history[answer.history.length-1].result}">{{answer.history[answer.history.length-1].result?"对":"错"}}</span>
@@ -81,5 +81,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    
+    <div class="dictDiv main-dark-bg main-text-color" style="min-height: 50px; text-align: left; z-index: 30; padding: 10px;position: absolute; width: 100%; top: 0; left: 0;">
+        <p style="padding: 0;margin: 0;"><span><blue>{{dict[2]}}</blue>   {{dict[4]}} </span></p>
+        <p style="padding: 0;margin: 0"><span>{{dict[3]}}</span></p>
     </div>
 </ion-view>

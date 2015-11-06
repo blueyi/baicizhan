@@ -6,8 +6,11 @@
 
 md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $stateParams, $ionicModal, $rootScope, $sce) {
 
+    $scope.dict = [];
+    
     $scope.randId = $stateParams.randid;
 
+    
     $ionicModal.fromTemplateUrl('templates/test-model.html', {
         scope: $scope, animation: 'slide-in-up'
     }).then(function (modal) {
@@ -91,6 +94,7 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
                 
             $scope.curAnswer = $scope.getDetailInfoByIndex(index);
             $scope.curAnswer.historyId = historyId;
+            
             if(isModal === 1 || isModal === -1)
             {                
                 var classes = ["slide-in-right","slide-in-left","slide-in-up","ng-enter","slide-in-up","active","ng-enter-active"];
@@ -98,7 +102,7 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
                 for(var i =0; i<classes.length; i++)
                     $('#test-model').removeClass(classes[i]);
                 
-                $('#test-model').addClass(isModal==1?"slide-in-right":"slide-in-left");
+                $('#test-model').addClass(isModal==1&&(historyId<($scope.answer.history.length -1))?"slide-in-right":"slide-in-left");
                 $('#test-model').addClass("ng-leave");                
                 $timeout(function(){$scope.modal.show();},100);                
             }
@@ -152,7 +156,8 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
             hint: {content: '', val: 0},
             video: false,
             videoUrl: "",
-            history: []
+            history: [],
+            value:2
         };
     $scope.playSound = function ()
     {
@@ -290,6 +295,24 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
             }
             detail.videoUrl = $sce.trustAsResourceUrl(path + detail.word + ".mp4");
         }
+        
+        var data = {right:0,wrong:0};
+        for(var i=0; i< $scope.answer.history.length; i++)
+        {
+            
+            if($scope.answer.history[i].id == index)
+            {
+                if($scope.answer.history[i].result == true && $scope.answer.history[i].value > 0)
+                {
+                    data.right++;
+                }
+                else
+                {
+                    data.wrong++;
+                }
+            }
+        }
+        detail.resultData = data;
         return detail;
     };
 
@@ -320,12 +343,16 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
             if (isKan)
             {
                 snd.chop();
+                $scope.answer.value = 1;
             }
             else
             {
                 snd.right(right);
+                
+                if(right == false)
+                    $scope.answer.value = ($scope.answer.value -1)>=0 ? $scope.answer.value : 0;
             }
-            $scope.answer.history.push({id: $scope.answer.pageIndex * 4 + $scope.answer.selectId, result: right});
+            $scope.answer.history.push({id: $scope.answer.pageIndex * 4 + $scope.answer.selectId, result: right, value:right?$scope.answer.value:0});
             $timeout(function () {
 
 
@@ -358,10 +385,46 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
         {
             snd.playSound("http://baicizhan.qiniucdn.com" + $scope.data[$scope.answer.pageIndex * 4 + $scope.answer.correctId][7]);
         }
-
+        else
+        {
+            var dict = db.getWord(word.toLowerCase());
+            $scope.dict = dict;
+            
+            if(dict.length >0)
+            {
+                $(".dictDiv").removeClass("ng-leave");   
+                $(".dictDiv").removeClass("ng-enter-active");   
+                    $(".dictDiv").removeClass("ng-enter");
+                    $(".dictDiv").addClass("ng-enter");
+                    
+                    /*
+                       $(".dictDiv").removeClass("ng-enter");
+                        $(".dictDiv").addClass("ng-leave");
+                      */  
+                    $timeout(function(){
+                        $(".dictDiv").addClass("ng-enter-active");
+                    },
+                    300);
+                
+            }
+            
+            
+        }
 
         console.log(word.trim());
     };
+
+    $scope.pageClick = function()
+    {
+        console.log("page click");
+        if($(".dictDiv").hasClass("ng-enter-active"))
+        {
+             $(".dictDiv").removeClass("ng-enter-active");
+             $(".dictDiv").removeClass("ng-enter");
+                        $(".dictDiv").addClass("ng-leave");
+        }
+        
+    }
 
     $scope.playWord = function ()
     {

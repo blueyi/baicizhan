@@ -57,6 +57,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('app.morepractice', {
+    url: '/main/morepractice',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/more-practice.html',
+        controller: 'morePracticeCtrl'
+      }
+    }
+  })
   .state('app.browse', {
       url: '/browse',
       views: {

@@ -10,7 +10,7 @@
     height: 100%
 }
 
-.notice
+.notice,.dictDiv
 {
     text-align: center;
     background-color: rgba(0,0,0,0.8);
@@ -18,13 +18,13 @@
     color: white;
 }
 
-.notice.ng-enter
+.notice.ng-enter,.dictDiv.ng-enter
 {
     transform: translateY(0%);
     transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms;
 }
 
-.notice.ng-leave
+.notice.ng-leave,.dictDiv.ng-leave
 {
     transition: all ease-in-out 100ms;
 }

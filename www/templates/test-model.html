@@ -4,7 +4,11 @@
         <button class="button button-outline" ng-click="closeLogin()"  style="width: 50%; height: 45px; margin: auto 5%">继续答题</button>
     </ion-footer-bar>
     <ion-content class="main-color-bg padding" style="padding-left: 20px; padding-right: 20px">
-        <h3 ng-click="playWord()"><span id="title" >{{curAnswer.word}}</span><span style="font-size: 20px; font-weight: normal; vertical-align: bottom; " class="main-text-color"><i class="icon ion-ios-close-empty assertive" style="margin-right: 5px; margin-left: 10px"></i>1</span></h3>
+        <h3 ng-click="playWord()"><span id="title" >{{curAnswer.word}}</span><span ng-if="curAnswer.resultData.right > 0" style="font-size: 20px; font-weight: normal; vertical-align: bottom; " class="main-text-color">
+                <i class="icon ion-ios-checkmark-empty balanced" style="margin-right: 5px; margin-left: 10px"></i>{{curAnswer.resultData.right}}</span>
+        <span ng-if="curAnswer.resultData.wrong > 0" style="font-size: 20px; font-weight: normal; vertical-align: bottom; " class="main-text-color">
+                <i class="icon ion-ios-close-empty assertive" style="margin-right: 5px; margin-left: 10px"></i>{{curAnswer.resultData.wrong}}</span>
+        </h3>
         <p ng-click="playWord()"><span  id="yinbiao" > {{data[curAnswer.id][9]}}</span></p>
         <p >{{data[curAnswer.id][3]}}</p>
         <img height="150"   src="http://baicizhan2.qiniucdn.com{{data[curAnswer.id][6]}}">
