@@ -52,22 +52,38 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
 
     // Open the login modal
     $scope.login = function (isHistory, isModal) {
-        if (isHistory)
+        if (isHistory &&$scope.answer.history.length >0)
         {
             var index = $scope.answer.history[$scope.answer.history.length - 1].id;
             var historyId = $scope.answer.history.length - 1;
-            if ( isModal === 1 || isModal === -1)
+            if (( isModal === 1 || isModal === -1))
             {
                 historyId = $scope.curAnswer.historyId - isModal;
-                if (historyId < 0) {return;};
+                if (historyId < 0) {
+                    $(".notice").removeClass("ng-leave");                   
+                    $(".notice").removeClass("ng-enter");
+                    $(".notice").addClass("ng-enter");
+                    if($scope.noticeTimeout)
+                    {
+                        $timeout.cancel($scope.noticeTimeout);
+                    }
+                    
+                    $scope.noticeTimeout = $timeout(function(){
+                        $(".notice").removeClass("ng-enter");
+                        $(".notice").addClass("ng-leave");
+                        
+                    },1000);
+                    
+                    return;};
                 
+               
                 if(historyId >= $scope.answer.history.length)
                 {
                     $scope.modal.hide();
                     return;
                 }
-                
-                index = $scope.answer.history[historyId].id;
+                else
+                {index = $scope.answer.history[historyId].id;}
                 
                 
             }   
@@ -76,20 +92,15 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
             $scope.curAnswer = $scope.getDetailInfoByIndex(index);
             $scope.curAnswer.historyId = historyId;
             if(isModal === 1 || isModal === -1)
-            {
-                $('#test-model').removeClass("slide-in-right");
-                $('#test-model').removeClass("slide-in-left");
-                $('#test-model').removeClass("slide-in-up");
-                $('#test-model').removeClass("ng-enter");
-                $('#test-model').removeClass("slide-in-up");
-                $('#test-model').removeClass("active");
-                $('#test-model').removeClass("ng-enter-active");
-                $('#test-model').addClass(isModal==1?"slide-in-right":"slide-in-left");
-                $('#test-model').addClass("ng-leave");
+            {                
+                var classes = ["slide-in-right","slide-in-left","slide-in-up","ng-enter","slide-in-up","active","ng-enter-active"];
                 
-                $timeout(function(){$scope.modal.show();},100);
-                //ng-enter active ng-enter-active
-                //$scope.swipeAnimation("#test-model");
+                for(var i =0; i<classes.length; i++)
+                    $('#test-model').removeClass(classes[i]);
+                
+                $('#test-model').addClass(isModal==1?"slide-in-right":"slide-in-left");
+                $('#test-model').addClass("ng-leave");                
+                $timeout(function(){$scope.modal.show();},100);                
             }
             else
             {
@@ -99,6 +110,7 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
         else
         {
             $scope.curAnswer = $scope.getDetailInfoByIndex($scope.answer.pageIndex * 4 + $scope.answer.correctId);
+            $scope.curAnswer.historyId = $scope.answer.history.length;
             $scope.modal.show();
         }
     };

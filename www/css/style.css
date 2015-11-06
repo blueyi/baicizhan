@@ -10,6 +10,29 @@
     height: 100%
 }
 
+.notice
+{
+    text-align: center;
+    background-color: rgba(0,0,0,0.8);
+    transform: translateY(-100%);
+    color: white;
+}
+
+.notice.ng-enter
+{
+    transform: translateY(0%);
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms;
+}
+
+.notice.ng-leave
+{
+    transition: all ease-in-out 100ms;
+}
+
+
+
+
+
 .zhan-right
 {
     border: 1px solid #6ad2bd !important;
