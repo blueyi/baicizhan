@@ -135,12 +135,7 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
 
     };
 
-    $scope.initdata = function ()
-    {
-        $scope.data = db.getRandomTest();
-        $ionicLoading.hide();
-    };
-    $scope.initdata();
+
 
 
     $scope.cells = [];
@@ -157,12 +152,30 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
             video: false,
             videoUrl: "",
             history: [],
-            value:2
+            value:2,
+            isOnlyWord:false
         };
-    $scope.playSound = function ()
+    $scope.playSound = function (isOnlyWord)
     {
-        snd.playSound("http://baicizhan.qiniucdn.com" + $scope.data[$scope.answer.pageIndex * 4 + $scope.answer.correctId][8]);
-
+        if(isOnlyWord)
+        {
+            if($scope.answer.isOnlyWord)
+            {
+                    snd.playSound("http://baicizhan.qiniucdn.com" + $scope.data[$scope.answer.pageIndex * 4 + $scope.answer.correctId][7]);
+        
+                
+            }
+            else
+            {
+                    snd.playSound("http://baicizhan.qiniucdn.com" + $scope.data[$scope.answer.pageIndex * 4 + $scope.answer.correctId][8]);
+        
+            }
+            
+        }
+        else
+        {
+            snd.playSound("http://baicizhan.qiniucdn.com" + $scope.data[$scope.answer.pageIndex * 4 + $scope.answer.correctId][8]);
+        }
     };
 
     $scope.updateWordText = function (text)
@@ -236,30 +249,53 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
         try
         {
             $scope.answer.isHint = false;
-
+            $scope.answer.isOnlyWord = false;
             if ($("#myVideo") && $("#myVideo").get(0))
             {
                 $("#myVideo").get(0).pause();
                 $("#myVideo").get(0).src = "";
             }
 
-
+            $scope.answer.isLastTest = false;
             $scope.answer.hint = {content: "", val: 0};
-            $scope.answer.correctId = Math.floor(Math.random() * 4);
+            $scope.answer.pageIndex = Math.floor(Math.random() * ($scope.data.length/4));
+            $scope.answer.correctId = 0;
+            $scope.answer.arrayDisorder = [0,1,2,3];
+            
+            $scope.answer.arrayDisorder.sort(function(a, b){return Math.floor(Math.random() * 2) ==0});
 
             var index = $scope.answer.pageIndex * 4 + $scope.answer.correctId;
             var mainPath = "http://baicizhan.qiniucdn.com";
             $scope.answer.word = $scope.data[index][15];
+            
+            
+            if($scope.data[index][17] == null)
+            {
+                $scope.data[index][17] = 0;   
+            }
+            else if($scope.data[index][17] >0)
+            {
+                $scope.answer.isOnlyWord = true;
+                
+                if($scope.data[index][17] > 1)
+                {
+                    $scope.answer.isLastTest = true;
+                }
+            }
+            if($scope.answer)
             $scope.updateVideo();
             $scope.updateWordText($scope.data[index][4]);
             snd.playSound(mainPath + $scope.data[index][7], true, true);
-            snd.playSound(mainPath + $scope.data[index][8], true);
-
+            if(!$scope.answer.isOnlyWord)
+            {
+                snd.playSound(mainPath + $scope.data[index][8], true);
+            }
 
 
         }
         catch (e)
         {
+            
         }
     };
 
@@ -331,7 +367,7 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
 
 
 
-    $scope.reset();
+    
 
     $scope.imgClick = function (index, isKan)
     {
@@ -339,7 +375,7 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
         {
             $scope.answer.selectId = index;
             $scope.answer.isAnswer = true;
-            var right = ($scope.answer.selectId === $scope.answer.correctId);
+            var right = ($scope.answer.arrayDisorder[$scope.answer.selectId] === $scope.answer.correctId);
             if (isKan)
             {
                 snd.chop();
@@ -350,9 +386,13 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
                 snd.right(right);
                 
                 if(right == false)
+                {    
                     $scope.answer.value = ($scope.answer.value -1)>=0 ? $scope.answer.value : 0;
+                }
+                else if($scope.answer.value > 0)
+                $scope.data[$scope.answer.pageIndex * 4 + $scope.answer.arrayDisorder[$scope.answer.selectId]][17]++;
             }
-            $scope.answer.history.push({id: $scope.answer.pageIndex * 4 + $scope.answer.selectId, result: right, value:right?$scope.answer.value:0});
+            $scope.answer.history.push({id: $scope.answer.pageIndex * 4 + $scope.answer.arrayDisorder[$scope.answer.selectId], result: right, value:right?$scope.answer.value:0});
             $timeout(function () {
 
 
@@ -360,7 +400,7 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
                 $scope.answer.isAnswer = false;
                 if (right)
                 {
-                    $scope.answer.pageIndex = ($scope.answer.pageIndex + 1) % 30;
+                    //$scope.answer.pageIndex = ($scope.answer.pageIndex + 1) % 30;
                     $scope.reset();
                     //snd.playSound("http://baicizhan.qiniucdn.com" + $scope.data[$scope.answer.pageIndex*4+$scope.answer.correctId][7]);
 
@@ -387,8 +427,9 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
         }
         else
         {
-            var dict = db.getWord(word.toLowerCase());
-            $scope.dict = dict;
+            db.getWordAsync(word.toLowerCase()).then(
+                    function(dict){
+                        $scope.dict = dict;
             
             if(dict.length >0)
             {
@@ -407,33 +448,35 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
                     300);
                 
             }
+                        
+                        
+                    },
+                    function(e){}
+                    
+                    );
+            
+           
             
             
         }
 
-        console.log(word.trim());
+        //console.log(word.trim());
     };
 
     $scope.pageClick = function()
     {
-        console.log("page click");
+//        console.log("page click");
         if($(".dictDiv").hasClass("ng-enter-active"))
         {
              $(".dictDiv").removeClass("ng-enter-active");
              $(".dictDiv").removeClass("ng-enter");
                         $(".dictDiv").addClass("ng-leave");
         }
-        
     }
 
     $scope.playWord = function ()
     {
-
         snd.playSound("http://baicizhan.qiniucdn.com" + $scope.data[$scope.answer.pageIndex * 4 + $scope.answer.correctId][7]);
-
-
-
-
     };
 
     $scope.changeHint = function ()
@@ -515,6 +558,23 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
 
     };
 
+    $scope.initdata = function ()
+    {
+        if(db.db)
+        {
+            db.getRandomTestAsync().then(
+                function (d) {
+                    $scope.data = d;
+                    $ionicLoading.hide();
+                    $scope.reset();},function (e) {});
+            }
+            else
+            {
+               return;
+                
+            }
 
+    };
+    $scope.initdata();
 
 });

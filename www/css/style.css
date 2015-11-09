@@ -272,3 +272,20 @@
 .slide-in-left-half.ng-leave, .slide-in-left-half > .ng-leave {
   -webkit-transition: all ease-in-out 100ms;
   transition: all ease-in-out 100ms; }
+
+
+.more-practice-item
+{
+    margin: 10px 30px; display: inline-block  ;  
+}
+
+.more-practice-item:active
+{
+    margin: 10px 30px; display: inline-block; 
+    opacity: 0.5;
+}
+
+.more-practice-item img
+{
+    border: 5px solid #f2eee1; width: 100px; display: inline-block  ;padding: 20px; background-color: white; border-radius: 50px;
+}
