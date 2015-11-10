@@ -21,7 +21,7 @@ md.factory('snd', function() {
         if (right)
         {    fct.playSound("snd/right_v6.mp3");}
         else
-        {    fct.playSound("snd/chop.mp3");}
+        {    fct.playSound("snd/wrong_v6.mp3");}
     }
     
     fct.playSound = function(path,isqueue, isclean)

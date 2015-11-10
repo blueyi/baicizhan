@@ -560,7 +560,7 @@ md.controller('testCtrl', function ($scope, $timeout, snd, db, $ionicLoading, $s
 
     $scope.initdata = function ()
     {
-        if(db.db)
+        if(window.db)
         {
             db.getRandomTestAsync().then(
                 function (d) {

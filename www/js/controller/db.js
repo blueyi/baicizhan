@@ -12,7 +12,7 @@ md.factory('db', function ($timeout, $rootScope,$q) {
 
         xhr.onload = function (e) {
             var uInt8Array = new Uint8Array(this.response);
-            fct.db = new SQL.Database(uInt8Array);
+            window.db = new SQL.Database(uInt8Array);
             deferred.resolve("ok");
         };
         xhr.send();
@@ -29,7 +29,7 @@ md.factory('db', function ($timeout, $rootScope,$q) {
 
         xhr1.onload = function (e) {
             var uInt8Array = new Uint8Array(this.response);
-            fct.wd = new SQL.Database(uInt8Array);
+            window.wd = new SQL.Database(uInt8Array);
             //var contents = fct.db.exec("SELECT * FROM ts_topic_data_info_1 ORDER BY RANDOM()  limit 5");
             // contents is now [{columns:['col1','col2',...], values:[[first row], [second row], ...]}]
         };
@@ -45,7 +45,7 @@ md.factory('db', function ($timeout, $rootScope,$q) {
     {
         try
         {
-            var res = fct.wd.exec("Select * from dictionary where topic_word like '" + word.replace(",", "").replace(".", "").trim().replace("\"", "") + "'");
+            var res = window.wd.exec("Select * from dictionary where topic_word like '" + word.replace(",", "").replace(".", "").trim().replace("\"", "") + "'");
 
             if (res[0].values)
                 return res[0].values[0];
@@ -63,7 +63,7 @@ md.factory('db', function ($timeout, $rootScope,$q) {
         setTimeout(function(){
         try
         {
-            var res = fct.wd.exec("Select * from dictionary where topic_word like '" + word.replace(",", "").replace(".", "").trim().replace("\"", "") + "'");
+            var res = window.wd.exec("Select * from dictionary where topic_word like '" + word.replace(",", "").replace(".", "").trim().replace("\"", "") + "'");
 
             if (res[0].values)
                 deferred.resolve(res[0].values[0]);
@@ -79,9 +79,9 @@ md.factory('db', function ($timeout, $rootScope,$q) {
     };
     fct.getRandomTest = function ()
     {
-        if (fct.db && fct.db.exec)
+        if (window.db && window.db.exec)
         {
-            var contents = fct.db.exec("SELECT * FROM ts_topic_data_info_1 ORDER BY RANDOM()  limit 40");
+            var contents = window.db.exec("SELECT * FROM ts_topic_data_info_1 ORDER BY RANDOM()  limit 40");
 
             return contents[0].values;
         }

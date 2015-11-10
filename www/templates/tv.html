@@ -1,0 +1,64 @@
+<ion-view view-title="Tv" ng-click="showControl($event)">
+    <div id="tvDiv" class="suprfill" style="background-color: black">
+        <video id="tvVideo"   preload="metadata"  style=" height: 100%; max-width: 130%; position: absolute; left:50%; top: 50%; transform: translate(-50%,-50%)" type="video/mp4" >
+            <source ng-src="{{mytvs[ui.selectIndex].url}}" autostart="false" />
+        </video>
+    </div>
+    <div class="slide-to-down" ng-class="{'ng-enter-active':ui.isShowControl,'ng-enter':ui.isShowControl}" style="height: 50px; background-color: rgba(0,0,0,0.3);position: absolute;
+         top: 0; width: 100%;">
+        <div class="suprfill" >
+            <div class="row " style=" height: 100%; padding: 0;">
+                <div class="col col-33 " style="height: 100%; position: relative; min-width: 150px; border-radius: 0 5px 0 0;">
+                    <div class="suprfill">
+                        <div class="row" style="height: 100%; padding: 0;">
+                            <a menu-close href="#/app/main" class="col col-33" style="position: relative">
+                                <i class="icon ion-ios-home-outline" style="font-size: 30px;position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: white;"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class='slide-to-up' ng-class="{'ng-enter-active':ui.isShowControl,'ng-enter':ui.isShowControl}" style="height: 50px; background-color: rgba(0,0,0,0.8);position: absolute;
+         bottom:  0; width: 100%;">
+        <div class="buttons" >
+            <div class="button button-clear button-icon button-small" ng-click="changeVideo(-1)">
+                <i class="icon"><img src="img/last.svg" ></i>
+            </div>
+            <div  class="button button-clear button-icon" ng-click="pauseVideo()"> <i class="icon"><img src="{{ui.paused?'img/play.svg':'img/pause.svg'}}"></i></div>
+            
+            <div class="button button-clear button-icon  button-small" ng-click="changeVideo(1)">
+                <i class="icon"><img src="img/next.svg" ></i>
+            </div>
+
+            <div class="button button-clear button-icon  icon ion-ios-information-outline " ng-click="popover.show($event)" style="float: right; vertical-align: middle; margin:0 10px">
+
+            </div>
+            <div class="button button-clear" style="float: right;">
+                <span>1/989</span>
+            </div>
+        </div>
+    </div>
+    <div  class="slide-in-left" ng-class="{'ng-enter-active':ui.isShowControl,'ng-enter':ui.isShowControl}"  style="position: absolute; right: 0; top: 50px; height: calc(100% -120px); width: 25%; background-color: black;">
+        <ion-scroll delegate-handle="tvListScrollHandle" id="tvList" zooming="false" direction="y" style="position: relative!important;width: 100%; ">
+            <div class="tv-option text-center" ng-repeat="n in mytvs" style="position: relative;height: 80px; width: calc(100% - 10px);
+                 background-color: {{$index==ui.selectIndex?'#7daddb':'#909090'}}; margin:5px 5px" ng-click="playVideo($index)">
+                <div class="text-center" style="color: white;position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%)">
+                    <svg style="padding: 0" version="1.1" id="Ð¡Ð»Ð¾Ð¹_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 48 48" enable-background="new 0 0 48 48" xml:space="preserve">
+                       <circle stroke="transparent" fill="white" stroke-width="2" cx="24" cy="24" r="22"></circle>
+                        <polygon fill="{{$index==ui.selectIndex?'#7daddb':'#909090'}}" points="17,36 17,14 37,24 "></polygon>                   
+                    </svg>                    
+                    <p style="padding: 0;margin: 0;font-size: small;">{{n.word}}</p>
+                </div>
+            </div>        
+        </ion-scroll>
+    </div>
+</ion-view>

@@ -98,11 +98,21 @@
 
 
 
-#option-btn.block
+#option-btn.block,.option-btn-1.block
 {
     background-color: #dad5cb;
     background-position: 10000px 10000px;
+    transform: rotateX(180deg);
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 1s;
+
 }
+
+.option-btn-1.block p
+{
+    display: none;
+}
+
+
 
 #option-word 
 {
@@ -113,6 +123,22 @@
     left: 50%; 
     width: 100%; 
     transform: translate(-50%,0%)
+}
+
+
+
+.option-btn-1
+{
+    border-radius: 3px;
+    //background-color: #dbd6c3;
+    color: #4d576b;  
+    border-bottom: 1px solid #d1c5b6;
+}
+
+.option-btn-1:first-child
+{
+   
+    border-top: 1px solid #d1c5b6;
 }
 
 #option-hint
@@ -225,9 +251,44 @@
     opacity: 0.5;
 }
 
+
+.slide-to-up {
+  -webkit-transform: translate3d(0%, 100%, 0);
+  transform: translate3d(0, 100%, 0); 
+  transition: all ease-in-out 125ms;
+}
+
+.slide-to-up.ng-enter, .slide-to-up > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms; }
+
+.slide-to-up.ng-enter-active, .slide-to-up > .ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slide-to-up.ng-leave, .slide-to-up > .ng-leave {
+  -webkit-transition: all ease-in-out 125ms;
+  transition: all ease-in-out 125ms; }
+
+.slide-to-down {
+  -webkit-transform: translate3d(0%, -100%, 0);
+  transform: translate3d(0, -100%, 0); transition: all ease-in-out 125ms;}
+
+.slide-to-down.ng-enter, .slide-to-down > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms; }
+
+.slide-to-down.ng-enter-active, .slide-to-down > .ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slide-to-down.ng-leave, .slide-to-down > .ng-leave {
+  -webkit-transition: all ease-in-out 125ms;
+  transition: all ease-in-out 125ms; }
+
 .slide-in-left {
   -webkit-transform: translate3d(100%, 0%, 0);
-  transform: translate3d(100%, 0%, 0); }
+  transform: translate3d(100%, 0%, 0); transition: all ease-in-out 125ms;}
 
 .slide-in-left.ng-enter, .slide-in-left > .ng-enter {
   -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms;
@@ -243,7 +304,7 @@
 
 .slide-in-right {
   -webkit-transform: translate3d(-100%, 0%, 0);
-  transform: translate3d(-100%, 0%, 0); }
+  transform: translate3d(-100%, 0%, 0);transition: all ease-in-out 125ms; }
 
 .slide-in-right.ng-enter, .slide-in-right > .ng-enter {
   -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 200ms;
@@ -288,4 +349,20 @@
 .more-practice-item img
 {
     border: 5px solid #f2eee1; width: 100px; display: inline-block  ;padding: 20px; background-color: white; border-radius: 50px;
+}
+
+.tv-option:active
+{
+    opacity: 0.5;
+}
+
+.platform-ios .popover-arrow:after
+{
+    background-color: #35b9e4;
+}
+
+#tvPopover
+{
+    background-color: #35b9e4;
+    color:#white;
 }

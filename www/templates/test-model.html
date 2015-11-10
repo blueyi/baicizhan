@@ -46,10 +46,8 @@
             <div  ng-if="curAnswer.video"  style="background-color: transparent; padding-left: 40px; margin-top: 15px" >
                 <i class="icon " style="font-size: smaller;color:white;background-color:#d1c5b6;border-radius: 3px; position: absolute;left: 12px; ; padding:2px 3px; margin-right: 20px">视频</i>
 
-                <video id="myVideo" ng-click="playVideo()"  style="max-width: 400px; width: 100%;" type="video/mp4" >
-                   
+                <video id="myVideo" ng-click="playVideo()"  style="max-width: 400px; width: 100%;" type="video/mp4" >                   
                         <source ng-src="{{curAnswer.videoUrl}}" autostart="false">
-
                 </video>
                 <div style="width: calc(100%); height: 1px; background-color: #b5ac95;margin-top: 10px;"></div>            
             </div>

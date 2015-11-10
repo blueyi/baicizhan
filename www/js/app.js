@@ -57,6 +57,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
+      .state('app.tv', {
+    url: '/main/tv',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/tv.html',
+        controller: 'tvCtrl'
+      }
+    }
+  })
   .state('app.morepractice', {
     url: '/main/morepractice',
     views: {

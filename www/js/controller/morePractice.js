@@ -12,5 +12,9 @@ md.controller('morePracticeCtrl', function ($scope, $timeout, snd, db, $ionicLoa
             {url:"abc.svg",title:"单词拼写",level:5}],
         lines:["大侠您真想试试吧","我们有三种加强记忆的方法","想试试吗"]
     };
+    
+    ImgCache.cacheFile('img/headphone.svg');
+    ImgCache.cacheFile('img/microphone.svg');
+    ImgCache.cacheFile('img/abc.svg');
  
 });

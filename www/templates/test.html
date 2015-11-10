@@ -13,70 +13,64 @@
                                     <div style=";position: absolute; font-size: smaller;left: 10%; top: 50%; transform: translate(0, -50%)">
                                         需学习25<br>学复习2
                                     </div>
-                                 
+
                                 </div>
                             </div>
-                            
+
                         </div>
-                        
-                        
-                        
-                        
+
+
+
+
                     </div>
                     <div class="col col-66" style="position: relative; height: 50px; padding: 0px 10px;">
-                        <div ng-if="answer.history.length >0" ng-click="onSwipeLeft()" style="   line-height: 50px; white-space: nowrap;
+                        <div ng-if="answer.history.length > 0" ng-click="onSwipeLeft()" style="   line-height: 50px; white-space: nowrap;
                              width:98%; text-overflow: ellipsis; overflow-x: hidden">
                             <i class="hide icon ion-checkmark btn-blue-color" style="margin: 0 10px; "></i>
-                            <span style="margin: 0 10px;border:1px solid #b8ae96;padding: 2px 3px; border-radius: 2px" ng-class="{'zhan-right':answer.history[answer.history.length-1].result,'zhan-wrong':!answer.history[answer.history.length-1].result}">{{answer.history[answer.history.length-1].result?"对":"错"}}</span>
-                            {{data[answer.history[answer.history.length-1].id][3]}}
-                        
+                            <span style="margin: 0 10px;border:1px solid #b8ae96;padding: 2px 3px; border-radius: 2px" ng-class="{'zhan-right':answer.history[answer.history.length - 1].result,'zhan-wrong':!answer.history[answer.history.length - 1].result}">{{answer.history[answer.history.length-1].result?"对":"错"}}</span>
+                            {{data[answer.history[answer.history.length - 1].id][3]}}
+
                         </div>
                     </div>
                 </div>
-             </div>
-         </div>      
+            </div>
+        </div>      
         <div style="height:calc(40% - 55px); position: relative;" class="main-color-bg" on-swipe-left="onSwipeLeft()">
             <div  style="height: 50%; width: 80%; max-width: 800px;margin: 0 auto; border-bottom: 1px solid lightgray;position: relative" ng-class="{'borderless':!answer.isHint}">            
                 <p id="option-word" class="text-center" style="" ng-class="{'middle':answer.isHint}">
-                    <span  ng-repeat="n in cells track by $index" ng-if="answer.isOnlyWord==false ||  n.trim().toLowerCase().indexOf(answer.word.toLowerCase())>=0" ng-class="{'blue':n.trim().toLowerCase().indexOf(answer.word.toLowerCase())>=0}"  ng-bind-html="answer.isOnlyWord?answer.word:n" ng-click="wordClick(n)"> </span>                
+                    <span  ng-repeat="n in cells track by $index" ng-if="answer.isOnlyWord == false || n.trim().toLowerCase().indexOf(answer.word.toLowerCase()) >= 0" ng-class="{'blue':n.trim().toLowerCase().indexOf(answer.word.toLowerCase()) >= 0}"  ng-bind-html="answer.isOnlyWord?answer.word:n" ng-click="wordClick(n)"> </span>                
                 </p>
             </div>
             <div  class="text-center"  style="height: 50%; width: 80%; max-width: 800px;margin: 0 auto; ">  
-                <p id="option-hint" ng-class="{'hint1':answer.hint.val==1,'hint2':answer.hint.val==2,'hint3':answer.hint.val==3}" style="margin-top: 15px;color: #909090;;"><span><i ng-if="answer.hint.val==1" id="sound-btn" ng-click="playSound()" class="icon ion-ios-play-outline" style="color:white;background-color:#d1c5b6;border-radius: 3px;  ; padding:5px 10px; margin-right: 20px"></i>
+                <p id="option-hint" ng-class="{'hint1':answer.hint.val == 1,'hint2':answer.hint.val == 2,'hint3':answer.hint.val == 3}" style="margin-top: 15px;color: #909090;;"><span><i ng-if="answer.hint.val == 1" id="sound-btn" ng-click="playSound()" class="icon ion-ios-play-outline" style="color:white;background-color:#d1c5b6;border-radius: 3px;  ; padding:5px 10px; margin-right: 20px"></i>
                     </span><span  ng-bind-html="answer.hint.content" ></span>
-                    </p>
+                </p>
             </div>                      
         </div>
-         <div style="height:calc(60% - 55px);">
-             <div ng-if="answer.isLastTest == true"  ng-repeat="m in [0,1]" class="row text-center" style="height: 50%; max-width:   800px; margin: 0 auto">
-                 <div id='option-btn' ng-repeat="n in [0,1]" ng-click="imgClick(m*2+n)" class="col img-btn" 
-                      ng-class="{'block':answer.isAnswer&&answer.arrayDisorder[answer.selectId] == answer.correctId&&answer.correctId!=(answer.arrayDisorder[m*2+n])}"
-                      style="position: relative ;margin:0 2px;height: 100%; background-image: url(http://baicizhan2.qiniucdn.com{{data[answer.pageIndex*4 + answer.arrayDisorder[m*2+n]][6]}}); background-repeat: no-repeat; background-size: cover;">
-                     
-                     <div ng-if='answer.isAnswer&&( answer.selectId == m*2+n && answer.arrayDisorder[answer.selectId] != answer.correctId)' class="suprfill" style="background-size: 80% 80%; background-image: url('img/wrong.svg');background-position: 50% 50%;background-repeat: no-repeat; ;background-origin: 50% 50%;">
-                        
+        <div style="height:calc(60% - 55px);">
+            <div ng-if="answer.isLastTest == false"  ng-repeat="m in [0, 1]" class="row text-center" style="height: 50%; max-width:   800px; margin: 0 auto">
+                <div id='option-btn' ng-repeat="n in [0, 1]" ng-click="imgClick(m * 2 + n)" class="col img-btn" 
+                     ng-class="{'block':answer.isAnswer && answer.arrayDisorder[answer.selectId] == answer.correctId && answer.correctId != (answer.arrayDisorder[m * 2 + n])}"
+                     style="position: relative ;margin:0 2px;height: 100%; background-image: url(http://baicizhan2.qiniucdn.com{{data[answer.pageIndex * 4 + answer.arrayDisorder[m * 2 + n]][6]}}); background-repeat: no-repeat; background-size: cover;">
+                    <div ng-if='answer.isAnswer && (answer.selectId == m * 2 + n && answer.arrayDisorder[answer.selectId] != answer.correctId)' class="suprfill" style="background-size: 80% 80%; background-image: url('img/wrong.svg');background-position: 50% 50%;background-repeat: no-repeat; ;background-origin: 50% 50%;">
                     </div>
-                    <div ng-if='answer.isAnswer&&(answer.selectId == m*2+n && answer.arrayDisorder[answer.selectId] == answer.correctId)' class="suprfill" style="background-size: 80% 80%; background-image: url('img/right.svg');background-position: 50% 50%;background-repeat: no-repeat; ;background-origin: 50% 50%;">
-                        
+                    <div ng-if='answer.isAnswer && (answer.selectId == m * 2 + n && answer.arrayDisorder[answer.selectId] == answer.correctId)' class="suprfill" style="background-size: 80% 80%; background-image: url('img/right.svg');background-position: 50% 50%;background-repeat: no-repeat; ;background-origin: 50% 50%;">
                     </div>
                 </div>                           
             </div>
-          <div ng-if="answer.isLastTest == false" ng-repeat="m in [0]"  class=" text-center" style="height: 100%; max-width:   800px; margin: 0 auto">
-                 <div  ng-repeat="n in [0,1,2,3]" ng-click="imgClick(m*2+n)" class=" text-center" 
-                      ng-class="{'block':answer.isAnswer&&answer.arrayDisorder[answer.selectId] == answer.correctId&&answer.correctId!=(answer.arrayDisorder[m*2+n])}"
-                      style="position: relative ;margin:0 2px;height: 25%;  background-repeat: no-repeat; background-size: cover;">
-                     <p style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%)">{{data[answer.pageIndex*4 + answer.arrayDisorder[m*2+n]][3]}}</p>
-                     <div ng-if='answer.isAnswer&&( answer.selectId == m*2+n && answer.arrayDisorder[answer.selectId] != answer.correctId)' class="suprfill" style="background-size: 80% 80%; background-image: url('img/wrong.svg');background-position: 50% 50%;background-repeat: no-repeat; ;background-origin: 50% 50%;">
-                        
-                    </div>
-                    <div ng-if='answer.isAnswer&&(answer.selectId == m*2+n && answer.arrayDisorder[answer.selectId] == answer.correctId)' class="suprfill" style="background-size: 80% 80%; background-image: url('img/right.svg');background-position: 50% 50%;background-repeat: no-repeat; ;background-origin: 50% 50%;">
-                        
-                    </div>
-                </div>                           
+            <div ng-if="answer.isLastTest == true" ng-repeat="m in [0]"  class=" text-center" style="position: relative;height: 100%;  max-width:   800px;margin:  0 auto">
+                <div ng-repeat="n in [0,1,2,3]"  ng-click="imgClick(m * 2 + n)"  style="height:25%;position: relative;" class="option-btn-1 main-color-bg" ng-class="{'block':answer.isAnswer && answer.arrayDisorder[answer.selectId] == answer.correctId && answer.correctId != (answer.arrayDisorder[m * 2 + n])}">
+                    <p style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%)">{{data[answer.pageIndex * 4 + answer.arrayDisorder[m * 2 + n]][3]}}</p>
+                    <img ng-if='answer.isAnswer && (answer.selectId == m * 2 + n && answer.arrayDisorder[answer.selectId] != answer.correctId)'  style="position: absolute;height: 80%;left: 50%; top: 50%; transform: translate(-50%,-50%) " ng-src="img/wrong.svg">
+                    <img ng-if='answer.isAnswer && (answer.selectId == m * 2 + n && answer.arrayDisorder[answer.selectId] == answer.correctId)' style="position: absolute;height: 80%;left: 50%; top: 50%; transform: translate(-50%,-50%) " ng-src="img/right.svg">
+                </div>
+
+
+
             </div>
-            
+
         </div>
-       
+
         <div class="row" style="height: 60px;max-width:800px; margin: 0 auto">
             <div class="col col-25 tab-btn text-center">
                 <div ng-click="kan()" class="playBtn" style="margin:0 10px; width: calc(100% - 20px); padding: 10px 0px; border: 1px solid #b5ac95; color: #b5ac95; border-radius: 2px">
@@ -95,7 +89,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="dictDiv main-dark-bg main-text-color" style="min-height: 50px; text-align: left; z-index: 30; padding: 10px;position: absolute; width: 100%; top: 0; left: 0;">
         <p style="padding: 0;margin: 0;"><span><blue>{{dict[2]}}</blue>   {{dict[4]}} </span></p>
         <p style="padding: 0;margin: 0"><span>{{dict[3]}}</span></p>
